@@ -13,11 +13,11 @@ let connection: Connection;
 describe('Transaction', () => {
   beforeAll(async () => {
     connection = await createConnection('test-connection');
-    
+
     await connection.query('DROP TABLE IF EXISTS transactions');
     await connection.query('DROP TABLE IF EXISTS categories');
     await connection.query('DROP TABLE IF EXISTS migrations');
-    
+
     await connection.runMigrations();
   });
 
@@ -107,6 +107,7 @@ describe('Transaction', () => {
       },
     });
 
+    console.log(category);
     expect(category).toBeTruthy();
 
     const transaction = await transactionsRepository.findOne({
